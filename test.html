@@ -61,6 +61,37 @@
       color: #00b86b;
     }
 
+    /* Mobile Menu Toggle */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      gap: 0.25rem;
+    }
+
+    .mobile-menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
     /* Hero Section */
     .hero {
       position: relative;
@@ -580,40 +611,124 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+      
+      .hero {
+        padding-left: 4rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      
+      .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+    }
+
     @media (max-width: 768px) {
+      /* Header adjustments */
+      header {
+        padding: 0.8rem 1.5rem;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease;
+        z-index: 99;
+      }
+
+      .nav-menu.active {
+        transform: translateY(0);
+      }
+
+      .nav-menu ul {
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .nav-menu a {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+        display: block;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        background: rgba(0, 102, 51, 0.2);
+        color: #00b86b;
+      }
+
+      /* Hero section mobile */
+      .hero {
+        padding: 1rem;
+        padding-left: 2rem;
+        text-align: center;
+      }
+
       .hero-content h1 {
         font-size: 2.5rem;
+        line-height: 1.1;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+        margin: 1rem 0;
+      }
+
+      .btn-group {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 200px;
+        padding: 0.8rem 1.5rem;
+      }
+
+      /* Section adjustments */
+      .section {
+        padding: 3rem 0;
       }
 
       .section-header h2 {
         font-size: 2rem;
       }
 
-      .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+      .section-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
       }
 
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .footer-links {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .portfolio-grid {
-        grid-template-columns: 1fr;
+      /* About timeline mobile */
+      .timeline {
+        padding: 0 1rem;
       }
 
       .timeline-item {
         padding-left: 3rem;
+        margin-bottom: 2rem;
       }
 
       .timeline::before {
@@ -622,6 +737,223 @@
 
       .timeline-marker {
         left: 0.25rem;
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+
+      .timeline-content h3 {
+        font-size: 1.3rem;
+      }
+
+      .timeline-content p {
+        font-size: 0.9rem;
+      }
+
+      /* Services mobile */
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .service-card {
+        padding: 1.5rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.2rem;
+      }
+
+      .service-card p {
+        font-size: 0.9rem;
+      }
+
+      /* Portfolio mobile */
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .portfolio-image {
+        height: 200px;
+      }
+
+      .portfolio-overlay {
+        padding: 1.5rem;
+      }
+
+      .portfolio-overlay h3 {
+        font-size: 1.3rem;
+      }
+
+      .portfolio-overlay p {
+        font-size: 0.9rem;
+      }
+
+      /* Contact mobile */
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .contact-form {
+        padding: 1.5rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+      }
+
+      .contact-info h3 {
+        font-size: 1.5rem;
+      }
+
+      .contact-info p {
+        font-size: 0.9rem;
+      }
+
+      /* Footer mobile */
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .footer-links {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .social-links {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .footer-section {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Extra small screens */
+      .container {
+        padding: 0 1rem;
+      }
+
+      header {
+        padding: 0.6rem 1rem;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+      }
+
+      .hero {
+        padding: 0.8rem;
+        padding-left: 1.5rem;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 0.9rem;
+      }
+
+      .section {
+        padding: 2rem 0;
+      }
+
+      .section-header h2 {
+        font-size: 1.8rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.9rem;
+      }
+
+      .timeline-item {
+        padding-left: 2.5rem;
+      }
+
+      .timeline::before {
+        left: 0.8rem;
+      }
+
+      .timeline-marker {
+        left: 0.1rem;
+        width: 1rem;
+        height: 1rem;
+      }
+
+      .service-card,
+      .contact-form {
+        padding: 1rem;
+      }
+
+      .portfolio-image {
+        height: 180px;
+      }
+
+      .portfolio-overlay {
+        padding: 1rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      .btn-gold {
+        padding: 0.8rem 1.5rem;
+      }
+    }
+
+    /* Landscape mobile orientation */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 2rem;
+      }
+
+      .section {
+        padding: 2rem 0;
+      }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      .service-card:hover,
+      .portfolio-item:hover {
+        transform: none;
+      }
+
+      .btn:hover {
+        transform: none;
+      }
+
+      /* Increase touch targets */
+      .btn {
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      nav a {
+        padding: 0.5rem;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
       }
     }
 
@@ -656,7 +988,12 @@
   <!-- Header -->
   <header>
     <div class="logo">OJUTU</div>
-    <nav>
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-menu">
       <ul>
         <li><a href="#services">Services</a></li>
         <li><a href="#portfolio">Work</a></li>
@@ -945,6 +1282,34 @@
   </footer>
 
   <script>
+    // Mobile menu toggle
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        mobileMenuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
